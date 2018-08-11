@@ -8,12 +8,11 @@ import {getArticle} from '../api'
 export default class Article extends Component {
     static propTypes = {
         teamId: PropTypes.string.isRequired,
-        articleId: PropTypes.string.isRequired,
+        articleid: PropTypes.string.isRequired,
         children: PropTypes.func.isRequired
     }
     state = {
         article: null,
-        loading: true
     }
 
     componentDidMount () {
@@ -36,7 +35,6 @@ export default class Article extends Component {
         getArticle(teamId, articleId)
           .then((article)=> this.setState(()=> ({
               article,
-              loading: false
           })))
     }
 

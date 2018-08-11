@@ -44,7 +44,7 @@ export default class Articles extends Component {
                   <Article articleid ={match.params.articleId } teamId ={teamId}> 
                     {(article) => !article ? <h1>LOADING</h1> : (
                         <div className ='panel'>
-                          <article classname='article' key = {article.id}>
+                          <article className='article' key = {article.id}>
                             <h1 className='header'>{article.title}</h1>
                             <p>{article.body}</p>
                           </article>
