@@ -22,7 +22,7 @@ export default class Loading extends Component {
             this.state.text === stopper
             ? this.setState(() => ({ text: this.props.text}))
             : this.setState(({text}) => ({text: text + "."}))
-        })
+        }, 300)
     }
 
     componentWillUnmount () {
