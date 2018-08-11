@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import {Component} from 'react'
 import PropTypes from 'prop-types'
 import {getArticle} from '../api'
 
@@ -12,16 +12,19 @@ export default class Article extends Component {
         children: PropTypes.func.isRequired
     }
     state = {
-        article: null
+        article: null,
+        loading: true
     }
 
     componentDidMount () {
-        const {teamId, articleId} = this.props
-        this.getArticle(teamId, articleId)
+        const {teamId, articleid} = this.props
+        console.log(this.props)
+        this.getArticle(teamId, articleid)
     }
     componentwillRecieveProps (nextProps){
-        if(this.props.articleId !== nextProps.articleId){
-            this.getArticle(nextProps.teamid, nextProps.articleid)
+        console.log(nextProps)
+        if(this.props.articleid !== nextProps.articleid){
+            this.getArticle(nextProps.teamId, nextProps.articleid)
         }
     }
 
@@ -32,15 +35,21 @@ export default class Article extends Component {
 
         getArticle(teamId, articleId)
           .then((article)=> this.setState(()=> ({
-              article
+              article,
+              loading: false
           })))
     }
 
     render(){
+        
+        console.log(this.props)
+        console.log(this.state.article)
 
         return (
-            this.props.children(this.state.article)
+           this.props.children(this.state.article)
 
         )
+        
+        
     }
 }

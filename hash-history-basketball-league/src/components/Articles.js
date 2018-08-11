@@ -31,7 +31,7 @@ export default class Articles extends Component {
         const {params, url} = this.props.match
 
         const {teamId} = params 
-
+        console.log(params)
         return (
             loading === true ? <h1>LOADING</h1>
             : <div className = 'container two-column'>
