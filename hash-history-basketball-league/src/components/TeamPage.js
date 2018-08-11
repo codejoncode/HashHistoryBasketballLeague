@@ -13,7 +13,7 @@ export default class TeamPage extends Component {
         this.state = {
             loading: true, 
             articles: [], 
-            teamNames: []
+            teamNames: {},
         }
     }
 
@@ -28,27 +28,14 @@ export default class TeamPage extends Component {
                 teamNames
             }))
         })
-
-        // getTeamsArticles(this.props.match.params.teamId)
-        //   .then((articles) =>{
-        //       this.setState(() => ({
-        //           loading: false, 
-        //           articles
-        //       }))
-        //   } )
     }
 
     render() {
-        console.log(this.state)
         const {loading, articles, teamNames} = this.state
         const {match} = this.props
         const {teamId} = match.params
-        console.log(match.params)
-        console.log(teamNames)
-        console.log(teamId)
-        console.log(loading)
+        
         if (loading === false && teamNames.includes(teamId) === false){
-            console.log('redirecting')
             return <Redirect to='/' />
         }
 
@@ -88,9 +75,7 @@ export default class TeamPage extends Component {
                                     <Link to = {`$match.url/articles/${slug(article.title)}`}> 
                                     <h4 className='article-title'>{article.title}</h4>
                                     <div className='article-date'>{article.date.toLocaleDateString()}</div>
-                                      <div> 
-
-                                      </div>
+                                    
                                     </Link>
                                 </li>
                             ))}
