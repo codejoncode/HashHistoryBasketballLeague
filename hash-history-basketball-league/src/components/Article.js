@@ -20,7 +20,8 @@ export default class Article extends Component {
         console.log(this.props)
         this.getArticle(teamId, articleid)
     }
-    componentwillRecieveProps (nextProps){
+    
+    componentWillReceiveProps (nextProps){
         console.log(nextProps)
         if(this.props.articleid !== nextProps.articleid){
             this.getArticle(nextProps.teamId, nextProps.articleid)
