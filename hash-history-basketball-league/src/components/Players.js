@@ -21,8 +21,8 @@ export default class Players extends Component {
         const {location} = this.props
 
         location.search
-        ? this.fetchPlayers(parse(location.search).teamId)
-        : this.fetchPlayers()
+        ? this.fetchPlayers(parse(location.search).teamId) // if a team is selected
+        : this.fetchPlayers() // if no team is selected. 
 
 
     }
@@ -38,18 +38,26 @@ export default class Players extends Component {
     }
 
     render(){
-        const {players} = this.state; 
+        const {players, loading} = this.state; 
+        const {match, location } = this.props;
         console.log(players); 
         return(
             <div className="container two-column">
-                <h1>PLAYERS</h1>
-                <br />
-                <br />
-                {players.map((plry, i) => (
-                    <h2><Link key={i} to = {`/${plry.name}`}>{plry.name}</Link></h2>
-                ))
-                }
-                    
+                <SideBar
+                loading={loading}
+                title='Players'
+                list={players.map((player) => player.name)}
+                {...this.props}
+                
+
+                /> 
+                {loading === false && location.pathname === 'players'
+            ? <div className = 'sidebar-instruction'>Select a Player</div>
+            : null} 
+            {/* this is a check if the loading is completed and the pathname is players then show select a player on the screen.
+            the pathname will not be players if a player is selected it will actually feature the players name. 
+            If a player has been selecte nothing displays */}
+
             
             </div>
         )
