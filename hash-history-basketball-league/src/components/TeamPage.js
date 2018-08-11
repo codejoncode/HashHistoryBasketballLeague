@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 
-import {Link} from 'react-router-dom'
-import {getTeamsArticles} from '../api'
+import {Link, Redirect} from 'react-router-dom'
+import {getTeamsArticles, getTeamNames} from '../api'
 import TeamLogo from './TeamLogo'
 import Team from './Team'
 import slug from 'slug'
@@ -13,29 +13,49 @@ export default class TeamPage extends Component {
         this.state = {
             loading: true, 
             articles: [], 
+            teamNames: []
         }
     }
 
     componentDidMount () {
-        getTeamsArticles(this.props.match.params.teamId)
-          .then((articles) =>{
-              this.setState(() => ({
-                  loading: false, 
-                  articles
-              }))
-          } )
+        Promise.all([
+            getTeamNames(),
+            getTeamsArticles(this.props.match.params.teamId)
+        ]).then(([teamNames, articles]) => {
+            this.setState(() => ({
+                loading: false,
+                articles,
+                teamNames
+            }))
+        })
+
+        // getTeamsArticles(this.props.match.params.teamId)
+        //   .then((articles) =>{
+        //       this.setState(() => ({
+        //           loading: false, 
+        //           articles
+        //       }))
+        //   } )
     }
 
     render() {
-
-        const {loading, articles} = this.state
+        console.log(this.state)
+        const {loading, articles, teamNames} = this.state
         const {match} = this.props
         const {teamId} = match.params
+        console.log(match.params)
+        console.log(teamNames)
+        console.log(teamId)
+        console.log(loading)
+        if (loading === false && teamNames.includes(teamId) === false){
+            console.log('redirecting')
+            return <Redirect to='/' />
+        }
 
         return(
             <div>
                 <Team id ={teamId}>
-                    {(team) => team === null
+                    {(team) => team === null || loading === true
                     ? <h1>LOADING</h1>
                     : <div className = 'panel'>
                         <TeamLogo id={teamId}/>
@@ -68,7 +88,9 @@ export default class TeamPage extends Component {
                                     <Link to = {`$match.url/articles/${slug(article.title)}`}> 
                                     <h4 className='article-title'>{article.title}</h4>
                                     <div className='article-date'>{article.date.toLocaleDateString()}</div>
-                                      <div> </div>
+                                      <div> 
+
+                                      </div>
                                     </Link>
                                 </li>
                             ))}
