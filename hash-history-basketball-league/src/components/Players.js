@@ -49,7 +49,6 @@ export default class Players extends Component {
                 list={players.map((player) => player.name)}
                 {...this.props}
                 
-
                 /> 
                 {loading === false && location.pathname === 'players'
             ? <div className = 'sidebar-instruction'>Select a Player</div>
@@ -58,6 +57,35 @@ export default class Players extends Component {
             the pathname will not be players if a player is selected it will actually feature the players name. 
             If a player has been selecte nothing displays */}
 
+            {/* nested route */}
+            <Route path={`${match.url}/:playerid`} render = {({match}) => {
+                if (loading === true) return null
+
+                const {
+                    name, position, teamId, number, avatar, apg, ppg, rpg, spg, 
+                } = players.find((player) => slug(player.name) === match.params.playerId)
+
+                return (
+                    <div className='panel'>
+                        <img className='avatar' src={`${avatar}`} alt={`${name}'s avatar`} />
+                        <h1 className='medium-header'>{name}</h1>
+                        <h3 className = 'header'>#{number}</h3>
+                        <div className = 'row'>
+                            <ul className = 'info-list' style={{marginRight: 80}}>
+                                <li>
+                                    <div>
+                                        <Link style ={{color: '#68809a'}} to ={`/${teamId}`}></Link>
+                                    </div>
+                                </li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </div>
+                    </div>
+                )
+            }} />
+            {/* /players/ playerid which can be anything do to the : but will be asscociated with individual players the player name will show in the url. */}
             
             </div>
         )
