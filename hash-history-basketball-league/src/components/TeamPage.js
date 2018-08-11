@@ -48,6 +48,9 @@ export default class TeamPage extends Component {
                             View Roster
                             </Link>
                          </h4>
+                         <ul className='championships'>
+                            {team.championships.map((ship) => <li key={ship}>{ship}</li>)}
+                         </ul>
 
                     </div> }
                 </Team>
