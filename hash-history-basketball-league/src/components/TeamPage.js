@@ -51,6 +51,12 @@ export default class TeamPage extends Component {
                          <ul className='championships'>
                             {team.championships.map((ship) => <li key={ship}>{ship}</li>)}
                          </ul>
+                         <ul className ="info-list row" style={{width: '100%'}}>
+                             <li>Established<div>{team.established}</div></li>
+                             <li>Manager<div>{team.manager}</div></li>
+                             <li>Coach<div>{team.coach}</div></li>
+                             <li>Record<div>{team.wins}-{team.losses}</div></li>
+                         </ul>
 
                     </div> }
                 </Team>
