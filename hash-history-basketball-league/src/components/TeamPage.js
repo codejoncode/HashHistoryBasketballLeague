@@ -39,7 +39,6 @@ export default class TeamPage extends Component {
         if (loading === false && teamNames.includes(teamId) === false){
             return <Redirect to='/' />
         }
-        console.log(match);
 
         return(
             <div>

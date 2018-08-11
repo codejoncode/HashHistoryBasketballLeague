@@ -40,7 +40,7 @@ export default class Players extends Component {
     render(){
         const {players, loading} = this.state; 
         const {match, location } = this.props;
-        console.log(players); 
+        
         return(
             <div className="container two-column">
                 <SideBar
@@ -50,6 +50,7 @@ export default class Players extends Component {
                 {...this.props}
                 
                 /> 
+                {/* end of SideBar /> needed */}
                 {loading === false && location.pathname === 'players'
             ? <div className = 'sidebar-instruction'>Select a Player</div>
             : null} 
