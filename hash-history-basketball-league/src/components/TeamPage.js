@@ -39,7 +39,16 @@ export default class TeamPage extends Component {
                     ? <h1>LOADING</h1>
                     : <div className = 'panel'>
                         <TeamLogo id={teamId}/>
-                        <h1 className = "mediumHeader">{team.name}</h1>
+                        <h1 className = "medium-header">{team.name}</h1>
+                        
+                        <h4 style={{margin: 5}}>
+                            <Link  style={{cursor: 'pointer'}}
+                            to={{pathname: '/players', search : `?teamId=${teamId}`}} >
+
+                            View Roster
+                            </Link>
+                         </h4>
+
                     </div> }
                 </Team>
             </div>
