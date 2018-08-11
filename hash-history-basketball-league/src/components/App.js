@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 import Home from './Home';
 import Players from './Players';
 import Teams from './Teams';
+import Navbar from './Navbar'
 
 
 class App extends Component {
@@ -11,11 +12,14 @@ class App extends Component {
     return (
       <Router>
         <div>
+          <Navbar />
           
-
-          <Route path='/' exact component={Home} />
-          <Route path = '/players' component ={Players} />
-          <Route path = '/teams' component ={Teams} />
+          <Switch>
+            <Route path='/' exact component={Home} />
+            <Route path = '/players' component ={Players} />
+            <Route path = '/teams' component ={Teams} />
+            <Route render= {() => <h1>404 Error</h1>} />
+          </Switch>
         </div>
       </Router>
     );
