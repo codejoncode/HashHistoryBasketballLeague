@@ -58,6 +58,22 @@ export default class TeamPage extends Component {
                              <li>Record<div>{team.wins}-{team.losses}</div></li>
                          </ul>
 
+                         <h2 className = 'header'>
+                         
+                         Articles
+                         </h2>
+                         <ul className = 'articles'>
+                            {articles.map((article) => (
+                                <li key={article.id}>
+                                    <Link to = {`$match.url/articles/${slug(article.title)}`}> 
+                                    <h4 className='article-title'>{article.title}</h4>
+                                    <div className='article-date'>{article.date.toLocaleDateString()}</div>
+                                      <div> </div>
+                                    </Link>
+                                </li>
+                            ))}
+                         </ul>
+
                     </div> }
                 </Team>
             </div>
