@@ -59,6 +59,9 @@ export default class Teams extends Component {
                                     <li>Manager<div>{team.manager}</div></li>
                                     <li>Coach<div>{team.coach}</div></li>
                                 </ul>
+                                <Link className = 'center btn-main' to = {`/${match.params.teamId}`}>
+                                    {team.name}  Team Page
+                                </Link>
                                 
                             </div>}
                         </Team>
