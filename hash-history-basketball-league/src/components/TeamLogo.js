@@ -18,9 +18,11 @@ TeamLogo.defaultProps = {
 }
 
 export default function TeamLogo (props) {
+  
   return (
     <svg {...props} x="0px" y="0px" viewBox="0 0 125.397 125.397">
       {logos[props.id]}
     </svg>
   )
+  
 }
