@@ -3,7 +3,7 @@ import {Route} from 'react-router-dom'
 import SideBar from './SideBar'
 import {getTeamsArticles} from '../api'
 import Article from './Article';
-
+import Loading from './Loading'; 
 
 export default class Articles extends Component {
     constructor(){
@@ -31,9 +31,9 @@ export default class Articles extends Component {
         const {params, url} = this.props.match
 
         const {teamId} = params 
-        console.log(params)
+        
         return (
-            loading === true ? <h1>LOADING</h1>
+            loading === true ? <Loading />
             : <div className = 'container two-column'>
                 <SideBar loading={loading} title = 'Articles' list = {teamsArticles} {...this.props}
                 
@@ -42,7 +42,7 @@ export default class Articles extends Component {
               <Route path={`${url}/:articleId`} render = {({match})=> (
                   
                   <Article articleid ={match.params.articleId } teamId ={teamId}> 
-                    {(article) => !article ? <h1>LOADING</h1> : (
+                    {(article) => !article ? <Loading /> : (
                         <div className ='panel'>
                           <article className='article' key = {article.id}>
                             <h1 className='header'>{article.title}</h1>

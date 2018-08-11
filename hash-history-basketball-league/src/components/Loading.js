@@ -1,0 +1,40 @@
+import React, {Component} from 'react'
+
+import PropTypes from 'prop-types'
+
+
+export default class Loading extends Component {
+    static propTypes = {
+        text: PropTypes.string.isRequired
+    }
+
+    static defaultProps = {
+        text: 'Loading'
+    }
+
+    state = {
+        text: this.props.text
+    }
+
+    componentDidMount () {
+        const stopper = this.props.text + "..."
+        this.interval = setInterval(() => {
+            this.state.text === stopper
+            ? this.setState(() => ({ text: this.props.text}))
+            : this.setState(({text}) => ({text: text + "."}))
+        })
+    }
+
+    componentWillUnmount () {
+        window.clearInterval(this.interval) 
+    }
+
+    render() {
+
+        return (
+            <div className = 'container'>
+                <h1 className = ' text-center header'>{this.state.text}</h1>
+            </div>
+        )
+    }
+}

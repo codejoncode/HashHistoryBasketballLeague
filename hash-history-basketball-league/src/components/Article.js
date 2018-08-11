@@ -17,12 +17,12 @@ export default class Article extends Component {
 
     componentDidMount () {
         const {teamId, articleid} = this.props
-        console.log(this.props)
+        
         this.getArticle(teamId, articleid)
     }
     
     componentWillReceiveProps (nextProps){
-        console.log(nextProps)
+        
         if(this.props.articleid !== nextProps.articleid){
             this.getArticle(nextProps.teamId, nextProps.articleid)
         }
@@ -40,9 +40,6 @@ export default class Article extends Component {
     }
 
     render(){
-        
-        console.log(this.props)
-        console.log(this.state.article)
 
         return (
            this.props.children(this.state.article)
