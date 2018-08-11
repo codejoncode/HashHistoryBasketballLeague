@@ -58,7 +58,7 @@ export default class Players extends Component {
             If a player has been selecte nothing displays */}
 
             {/* nested route */}
-            <Route path={`${match.url}/:playerid`} render = {({match}) => {
+            <Route path={`${match.url}/:playerId`} render = {({match}) => {
                 if (loading === true) return null
 
                 const {
@@ -74,12 +74,18 @@ export default class Players extends Component {
                             <ul className = 'info-list' style={{marginRight: 80}}>
                                 <li>
                                     <div>
-                                        <Link style ={{color: '#68809a'}} to ={`/${teamId}`}></Link>
+                                        <Link style ={{color: '#68809a'}} to ={`/${teamId}`}>
+                                            {teamId[0].toUpperCase() + teamId.slice(1)}
+                                        </Link>
                                     </div>
                                 </li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
+                                <li>Position <div>{position}</div></li>
+                                <li>PPG<div>{ppg}</div></li>
+                            </ul>
+                            <ul className='info-list'>
+                                <li>APG <div>{apg}</div></li>
+                                <li>SPG<div>{spg}</div></li>
+                                <li>RPG<div>{rpg}</div></li>
                             </ul>
                         </div>
                     </div>
